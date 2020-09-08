@@ -1,0 +1,76 @@
+*{
+    padding:0;
+    margin:0;
+}
+.seactionA{
+    display: flex;
+    justify-content: space-around;  
+    padding-top: 20px;;
+    background-color: LightSlateGrey;
+    position: sticky;
+    top: 0;
+}
+.seactionA h1{
+  
+    margin-bottom: 15px;
+}
+.navbar{
+    display: flex;    
+}
+.navbar h3{
+    margin-left:50px ;
+    font-size: large;
+}
+
+.seactionB{
+    display: flex;
+    padding-bottom: 30px;  
+
+}
+.detils{
+    padding: 20px;
+    margin: 45px 8% 0 8% ;
+    background-color: #e7ebef;
+}
+.detils h1{
+    text-align: center;
+    padding: 10px;
+}
+.detils img{
+    max-width: 90%;
+    object-fit: contain;
+    margin-left: 40px;
+}
+.detils p{
+    padding: 20px;
+    font-size: 20px;
+}
+.moreText{
+    display: none;
+}
+.text.showmore .moreText{
+    display: inline;
+}
+.Read-more-btn{
+   background-color: LightSlateGrey;
+    padding: 5px 20px;
+    margin-left: 30%;
+}
+
+.card{
+  
+    background-color: LightSkyBlue;
+    padding: 2%;
+    margin: 45px 6% 0 0 ;
+}
+.card p{
+    font-size: 25px;
+    padding: 35px 0;
+    text-align: center;
+}
+.seactionC{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    padding-bottom: 50px; 
+   
+}
