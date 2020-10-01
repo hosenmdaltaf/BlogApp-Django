@@ -2,41 +2,48 @@
 {% load static %}
 {% block content %}
     {% include 'blogapp/navbar.html' %}
+
+  
 <div class="seactionB">
+
     <div class="detils">
-        <h1>Who am I</h1>
-        <img src="{% static 'images/cover.jpg' %}" alt="altaf">
-        <p>Date:20/2020</p>
-        <p class="text">  Hello! I'm Altaf, a passionate Software Engineer from Bangladesh,currently studing in China. who's experienced 
-            in taking fullstack applications from scratch to production.
-        I'm currently attending Henan University Of Technology, Sacramento as
-             a Software Engineering and working at FullStack Web.<span class="moreText"> 
-       Over the last 4 years, I've had the opportunity to develop for a handful of awesome companies / clients as a consultant and continue to do so today. My work includes developing mobile apps, making web apps, creating backend servers,
-            handling small-scale DevOps, and implementing desktop Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur porro amet itaque repellendus at odit molestiae a quod consectetur voluptates soluta, laudantium dolore consequuntur reiciendis obcaecati. Quos dolor odit doloremque. </span> </p>
-        <button class="Read-more-btn">Read More</button>
+
+        <h1>{{object_list.0.title}}</h1>
+        <img src="{{ object_list.0.image.url }}" >
+        <p>{{object_list.0.date}}-{{object_list.0.author}}</p>
+        <p class="text"> {{object_list.0.details}}  </p>
+      
+    
     </div>
 
     <div class="card">
-      <p>Date:20/2020</p>
-      <p>Latest Post</p>
-      <p>Annoucements</p>    
-       <p>Calender</p>
-       <p>News</p>
+        <p> {% now "jS F Y H:i" %}</p>
+        <p><a href="{% url 'blogapp:articale-detail' object_list.0.id %}">Latest Post</a></p>
+        <p>Annoucements</p>    
+        <p>Clock</p>
+        <p>News</p>
     </div>
+ 
 </div>
-{% for blog in object_list %}
-    <div class="seactionC">
+
+   
+<div class="seactionC">
+    {% for blog in object_list %}
+    
         <div class="detils">
             <h1>{{blog.title}}</h1>
-            <img src="{{ blog.image.url }}" alt="altaf">
+            <img src="{{ blog.image.url }}" >
             <p>{{blog.date}}-{{blog.author}}</p>
-            <p class="text"> {{blog.details}}<span class="moreText"> 
-        Over the last 4 years, I've had the opportunity to develop for a handful of awesome companies / clients as a consultant and continue to do so today. My work includes developing mobile apps, making web apps, creating backend servers,
-                handling small-scale DevOps, and implementing desktop Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur porro amet itaque repellendus at odit molestiae a quod consectetur voluptates soluta, laudantium dolore consequuntur reiciendis obcaecati. Quos dolor odit doloremque. </span> </p>
-            <button class="Read-more-btn">Read More</button>
+            <p class="text"> {{blog.details|truncatechars:100}}  </p>
+            <a href="{% url 'blogapp:articale-detail' blog.pk %}" > <button class="Read-more-btn">Read More</button> </a> 
+        
         </div>
-    </div>
 
-{% endfor %}
+    {% endfor %}
+</div>
+<ul>
+    <li><button>NExT</button></li>
+    <li><button>Privous</button></li>
+  </ul>
 
 {% endblock %}

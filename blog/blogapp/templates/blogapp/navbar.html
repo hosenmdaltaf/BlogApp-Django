@@ -6,8 +6,20 @@
     <div class="navbar">
         <h3>Home</h3>
         <h3>About</h3>
-        <h3>Register</h3>
+        <h3><a href="{% url 'accounts:signup' %}">Signup</a></h3>
+        <h3><a href="{% url 'accounts:login' %}">Login</a></h3>
         <h3>News</h3>
+        <h3><a href="{% url 'accounts:logout' %}">Logout</a></h3>
+
+       <!--    
+             <h3>
+            <form action="{% url 'accounts:logout'  %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        </h3>
+
+       --> 
     </div>
 </div> 
 {% endblock %}

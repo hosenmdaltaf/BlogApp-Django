@@ -1,0 +1,14 @@
+{% extends 'blogapp/main.html' %}
+
+{% block content %}
+
+    <h1>Login</h1>
+    <form class="site-form" action="{% url 'accounts:login'  %}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Login">
+    </form>
+    <h2><a href="{% url 'accounts:signup' %}">Signup</a></h2>
+
+
+{% endblock%}
