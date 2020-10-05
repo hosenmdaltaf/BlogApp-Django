@@ -1,5 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import (
+    ListView,
+     DetailView,
+     CreateView   
+)
+
 from .models import Post 
 from .import views
 
@@ -24,11 +29,23 @@ class HomeView(ListView):
         return Post.objects.all().order_by('-id')
 
     ordering=['-date']
+    paginate_by=4
     template_name='blogapp/blog.html'
 
 class ArticaleView(DetailView):
     model=Post
     template_name='blogapp/detail.html'
+
+class PostCreateView(CreateView):
+    model=Post
+    fields= ['title','image','details']
+    #template_name='blogapp/post_form.html.html'
+
+    def form_valid(self,form):
+        form.instance.author =self.request.user
+        return super().form_valid(form)
+
+
 
 def logout(request):
     return render(request,"blogapp/logout.html")

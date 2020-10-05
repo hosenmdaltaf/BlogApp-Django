@@ -2,6 +2,8 @@
 {% load static %}
 {% block content %}
     {% include 'blogapp/navbar.html' %}
+ 
+   
 
     <ul>
         <li><a href="{% url 'blogapp:home' %}">Back To Home</a></li>
@@ -12,16 +14,10 @@
             <img src="{{ object.image.url }}" alt="altaf">
             <p>{{object.date}}-{{object.author}}</p>
             <p class="text"> {{object.details}}</p>
-
-            <ul>
-                <li><button>NExT</button></li>
-                <li><button>Privous</button></li>
-              </ul>
-   
-        
         </div>
 
-
+           
+   
 
 
 {% endblock %}

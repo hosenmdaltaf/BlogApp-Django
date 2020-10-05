@@ -3,13 +3,31 @@
 {% block content %}
     {% include 'blogapp/navbar.html' %}
 
+    <style>
+        ul{
+          display: flex;
+          justify-content: space-around;
+          list-style: none;
+          margin-bottom: 50px;
+  
+        }
+        ul li{
+         
+        }
+        ul li button{
+          padding:5px 15px 5px 15px ;
+          
+        }
+      </style>
+
   
 <div class="seactionB">
 
     <div class="detils">
+        
 
         <h1>{{object_list.0.title}}</h1>
-        <img src="{{ object_list.0.image.url }}" >
+        <img src="{{ object_list.0.image.url }}" width="711px" height="400px";>
         <p>{{object_list.0.date}}-{{object_list.0.author}}</p>
         <p class="text"> {{object_list.0.details}}  </p>
       
@@ -21,7 +39,7 @@
         <p><a href="{% url 'blogapp:articale-detail' object_list.0.id %}">Latest Post</a></p>
         <p>Annoucements</p>    
         <p>Clock</p>
-        <p>News</p>
+        <p>{{accounts.name}}</p>
     </div>
  
 </div>
@@ -32,7 +50,11 @@
     
         <div class="detils">
             <h1>{{blog.title}}</h1>
-            <img src="{{ blog.image.url }}" >
+        {% if blog.image %}
+            <img src="{{ blog.image.url  }}"  >
+        {% endif %}
+           
+                
             <p>{{blog.date}}-{{blog.author}}</p>
             <p class="text"> {{blog.details|truncatechars:100}}  </p>
             <a href="{% url 'blogapp:articale-detail' blog.pk %}" > <button class="Read-more-btn">Read More</button> </a> 
@@ -41,9 +63,20 @@
 
     {% endfor %}
 </div>
-<ul>
-    <li><button>NExT</button></li>
-    <li><button>Privous</button></li>
-  </ul>
+
+{% if is_paginated %}
+
+    <ul >
+        {% if page_obj.has_previous %}
+            <li><button><a href="?page={{ page_obj.previous_page_number }}">Privous Page</a></button></li>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <li><button><a href="?page={{ page_obj.next_page_number }}">Next Page</a></button></li>
+        {% endif %}
+        
+    </ul>
+
+{% endif %}
 
 {% endblock %}

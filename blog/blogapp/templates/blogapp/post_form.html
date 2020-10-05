@@ -1,0 +1,15 @@
+{% extends 'blogapp/main.html' %}
+
+{% block content %}
+
+    <h1>Blog Post</h1>
+    <form   method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+     
+        <button type="submit">Post</button>
+    </form>
+   
+
+
+{% endblock%}
