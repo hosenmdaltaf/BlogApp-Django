@@ -29,7 +29,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogapp',
     'accounts',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,8 +63,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'blog.wsgi.application'
-
-
+#cacheing add by me
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': [
+            '127.0.0.1:8000',
+           
+        ]
+    }
+}
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -109,12 +120,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),  
+# ]
+# STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_URL = '/static/'
+    
+if not DEBUG:
+        STATIC_ROOT = ''
+    
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  
-]
-#STATIC_ROOT = os.path.join(BASE_DIR,'static')
+        os.path.join(BASE_DIR, 'static/'),
+    ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')

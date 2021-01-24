@@ -1,0 +1,25 @@
+{% extends 'blogapp/main.html' %}
+
+{% block content %}
+
+
+    <h1> Delete Blog Post</h1>
+<!-- {% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <form   method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <p>Are you sure you want to delete ?</p>
+        
+            <button value="Confirm" type="submit">Delete</button>
+        </form>
+    {% endif %}
+{% endif %} -->
+
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="Confirm">
+</form>
+
+{% endblock %}

@@ -1,26 +1,69 @@
 {% extends 'blogapp/main.html' %}
 
 {% block content %}
-<div class="seactionA">
-    <h1>Hosen MD Altaf</h1>
-    <div class="navbar">
-        <h3>Home</h3>
-        <h3>About</h3>
-        <h3><a href="{% url 'accounts:signup' %}">Signup</a></h3>
-        <h3><a href="{% url 'accounts:login' %}">Login</a></h3>
-        <h3>News</h3>
-        <h3><a href="{% url 'accounts:logout' %}">Logout</a></h3>
 
-       <!--    
-             <h3>
-            <form action="{% url 'accounts:logout'  %}" method="POST">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-            </form>
-        </h3>
 
-       --> 
+
+
+
+
+
+
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{% url 'blogapp:home' %}">
+        <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
+        <h2 style="width:112; height:50; ">Altaf</h2>
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
     </div>
-</div> 
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a href="{% url 'blogapp:home' %}" class="navbar-item">
+          Home
+        </a>
+  
+        <a href="{% url 'blogapp:about-page' %}" class="navbar-item">
+         About
+        </a>
+        <a href="{% url 'blogapp:contact' %}" class="navbar-item">
+          Contact
+         </a>
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            {% if request.user.is_authenticated  %}
+            
+            <a href="{% url 'blogapp:post-create' %}" class="button is-primary">
+              <strong>Create Post</strong>
+            </a>
+            <a href="{% url 'accounts:logout' %}" class="button is-light">
+              Logout
+            </a>
+            {% else %}
+            <a href="{% url 'accounts:signup' %}" class="button is-primary">
+              <strong>Sign up</strong>
+            </a>
+            <a href="{% url 'accounts:login' %}" class="button is-light">
+              Log in
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  
+
 
 {% endblock %}

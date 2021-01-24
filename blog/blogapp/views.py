@@ -1,57 +1,76 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from .models import Post
+from .import views
+from blogapp.forms import ContactForm
+
 from django.views.generic import (
-    ListView,
      DetailView,
-     CreateView   
+     CreateView,
+     ListView,
+    #  DeleteView
+)
+from django.views.generic.edit import(
+        DeleteView,
+        FormView
 )
 
-from .models import Post 
-from .import views
-
-'''
-import requests
-from bs4 import BeautifulSoup
-import lxml
-
-def home(request):
-    blog=Post.objects.all()
-    obj=Post.objects.get(id=pk) 
-    ordering=['-date']
-    return render (request,'blogapp/blog.html',{'blog':blog})
-    '''
 
 class HomeView(ListView):
-    # model=Post
-    # obj=Post.objects.order_by(-id)[0]
-    #obj= Post.objects.filter().order_by('-id')[0]
+    ordering=['-date']
+    paginate_by=6
+    template_name='blogapp/blog.html'
 
     def get_queryset(self):
         return Post.objects.all().order_by('-id')
 
-    ordering=['-date']
-    paginate_by=4
-    template_name='blogapp/blog.html'
+
+
+# post=Post.objects.all().order_by('-id')
+# post.view_count =view_count+1
+# post.save()
+
 
 class ArticaleView(DetailView):
     model=Post
     template_name='blogapp/detail.html'
 
+    def get_context_data(self,*args,**kwargs):
+        context = super().get_context_data(*args,**kwargs)
+        context['latest']= Post.objects.order_by('-date')[:5]
+        return context
+
+    def get_queryset(self):
+         return Post.objects.all()
+
+
 class PostCreateView(CreateView):
     model=Post
     fields= ['title','image','details']
-    #template_name='blogapp/post_form.html.html'
+    template_name='blogapp/post_form.html'
+    success_url = reverse_lazy("blogapp:home")
 
-    def form_valid(self,form):
-        form.instance.author =self.request.user
+    # def form_valid(self,form):
+    #     form.instance.author =self.request.user
+    #     return super().form_valid(form)
+
+
+class PostDeleteView(DeleteView):
+    model=Post
+    template_name='blogapp/delete.html'
+    success_url = reverse_lazy("blogapp:home")
+
+
+class Contact_View(FormView):
+    template_name = 'blogapp/contact.html'
+    form_class = ContactForm
+    success_url = '/thanks/'
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.send_email()
         return super().form_valid(form)
 
-
-
-def logout(request):
-    return render(request,"blogapp/logout.html")
-    
-# def news(request):
-   # source = requests.get('https://www.espncricinfo.com/').text
-    # soup = BeautifulSoup(source, 'lxml')
-    # article = soup.find(class_='img jumbotron-image')
-     #return render(request,"blogapp/news.html" ,{'article':article}) 
+def about(request):
+    return render(request,"blogapp/about.html")
