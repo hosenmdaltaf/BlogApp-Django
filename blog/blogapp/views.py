@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect
 from django.urls import reverse_lazy
 from .models import Post
 from .import views
@@ -18,8 +18,6 @@ from django.views.generic.edit import(
         FormView,
         UpdateView
 )
-
-
 #Homepage view
 class HomeView(ListView):
     ordering=['-date']
@@ -90,3 +88,4 @@ class Contact_View(FormView):
 #post About page view
 def about(request):
     return render(request,"blogapp/about.html")
+

@@ -11,7 +11,6 @@ from .views import(
     
 )  
 
-
 app_name='blogapp'
 
 urlpatterns = [
@@ -22,5 +21,6 @@ urlpatterns = [
     path('post/<int:pk>/update/', PostUpdateView.as_view(),name='post-update'),
     path('post/<int:pk>/delete/',PostDeleteView.as_view(),name='post-delete'),
     path('contact/', Contact_View.as_view(),name='contact'),
-    path('about/',views.about,name='about-page')
+    path('about/',views.about,name='about-page'),
+    
 ]
