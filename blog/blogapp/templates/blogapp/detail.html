@@ -1,9 +1,7 @@
 {% extends 'blogapp/main.html' %}
 {% load static %}
 {% block content %}
-    {% include 'blogapp/navbar.html' %}
- 
-  
+    
         <div class="blog-single gray-bg">
           <div class="container">
               <div class="row align-items-start">
@@ -13,7 +11,7 @@
                               <img src="{{ object.image.url }}" title="" alt="">
                           </div>
                           <div class="article-title">
-                              <h6><a href="#">Lifestyle</a></h6>
+                              
                               <h2>{{object.title}}</h2>
                               <div class="media second-header">
                                   <div class="avatar">
@@ -37,13 +35,11 @@
                         
                             {% if user.is_authenticated %}
                               <div class="nav tag-cloud">
-                                  <a href="#">Update post</a>
+                                  <a href="{% url 'blogapp:post-update' object.id %}">Update post</a>
                                   <a href="{% url 'blogapp:post-delete' object.id %}">Delete Post</a>
     
                               </div>
-                            {% endif %}
-                        
-                         
+                            {% endif %} 
                       </article>
                       <div class="contact-form article-comment">
                           <h4>Leave a Reply</h4>

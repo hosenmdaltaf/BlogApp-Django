@@ -1,7 +1,7 @@
 {% extends 'blogapp/main.html' %}
 {% load static %}
 {% block content %}
-    {% include 'blogapp/navbar.html' %}
+   
 
 <!--Hero seaction------------------------------------------------------------------------------------->
 <section class="hero is-medium is-primary is-bold">
@@ -36,7 +36,7 @@
                   <img  src="{{ blog.author.profile_pic.url }}" > 
                   
                 </div>
-                    <div class="d-flex flex-column ml-2"><span>{{user.username}}</span><span class="text-black-50">{{blog.date}}</span>
+                    <div class="d-flex flex-column ml-2"><span>{{ blog.author}}</span><span class="text-black-50">{{blog.date}}</span>
                     <span class="ratings"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
                     <i class="fa fa-star"></i></span></div>
                 </div>

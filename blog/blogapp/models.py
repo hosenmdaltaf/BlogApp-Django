@@ -5,7 +5,7 @@ from django.urls import reverse
 
 
 class Author(models.Model):
-    author= models.ForeignKey(User,on_delete=models.CASCADE)
+    author= models.ForeignKey(User,on_delete=models.CASCADE, null=True, blank=True)
     profile_pic = models.ImageField(upload_to='profile_pic',null=True,blank=True,default='/static/images/cover.jpg')
    
     def __str__(self):
@@ -16,7 +16,7 @@ class Post(models.Model):
     image=models.ImageField(upload_to='img', null=True,blank=True,default='/static/images/cover.jpg')
     date=models.DateTimeField(default=timezone.now)
     details=models.TextField()
-    author= models.ForeignKey('Author',on_delete=models.CASCADE)
+    author= models.ForeignKey('Author',on_delete=models.CASCADE, null=True, blank=True)
     view_count=models.IntegerField(default=0,null=True,blank =True)
 
 

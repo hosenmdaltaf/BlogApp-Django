@@ -3,6 +3,9 @@ from django.urls import reverse_lazy
 from .models import Post
 from .import views
 from blogapp.forms import ContactForm
+#for email
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
 
 from django.views.generic import (
      DetailView,
@@ -12,10 +15,12 @@ from django.views.generic import (
 )
 from django.views.generic.edit import(
         DeleteView,
-        FormView
+        FormView,
+        UpdateView
 )
 
 
+#Homepage view
 class HomeView(ListView):
     ordering=['-date']
     paginate_by=6
@@ -23,15 +28,13 @@ class HomeView(ListView):
 
     def get_queryset(self):
         return Post.objects.all().order_by('-id')
-
-
-
 # post=Post.objects.all().order_by('-id')
 # post.view_count =view_count+1
 # post.save()
 
 
-class ArticaleView(DetailView):
+#Detailpage view
+class PostDetailView(DetailView):
     model=Post
     template_name='blogapp/detail.html'
 
@@ -44,10 +47,11 @@ class ArticaleView(DetailView):
          return Post.objects.all()
 
 
+#post Create page view
 class PostCreateView(CreateView):
     model=Post
     fields= ['title','image','details']
-    template_name='blogapp/post_form.html'
+    template_name='blogapp/post_create_form.html'
     success_url = reverse_lazy("blogapp:home")
 
     # def form_valid(self,form):
@@ -55,16 +59,26 @@ class PostCreateView(CreateView):
     #     return super().form_valid(form)
 
 
+#post Update page view
+class PostUpdateView(UpdateView):
+    model = Post
+    fields = ['title','image','details']
+    template_name='blogapp/post_update_form.html'
+
+
+#post Delete page view
 class PostDeleteView(DeleteView):
     model=Post
     template_name='blogapp/delete.html'
     success_url = reverse_lazy("blogapp:home")
 
 
+#post Contact page view
 class Contact_View(FormView):
     template_name = 'blogapp/contact.html'
     form_class = ContactForm
-    success_url = '/thanks/'
+    success_url = reverse_lazy("blogapp:home")
+
 
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
@@ -72,5 +86,7 @@ class Contact_View(FormView):
         form.send_email()
         return super().form_valid(form)
 
+
+#post About page view
 def about(request):
     return render(request,"blogapp/about.html")

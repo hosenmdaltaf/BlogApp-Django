@@ -1,10 +1,9 @@
 {% extends 'blogapp/main.html' %}
 {% load static %}
 {% block content %}
-{% include 'blogapp/navbar.html' %}
-
 {% load crispy_forms_tags %}
-<h1 class="col-md-6 offset-md-3 btn-secondary" border-radius: 50%;>Contact with us</h1> 
+
+<h1  style="text-align: center; background-color: rgb(233, 236, 239);"> Knock Me for any query </h1>
 <form method="post">{% csrf_token %}
     <div class="row">
         <div class="col-md-6 offset-md-3">
