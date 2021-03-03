@@ -1,0 +1,130 @@
+{% extends 'blogapp/main.html' %}
+{% load static %}
+{% block content %}
+    
+        <div class="blog-single gray-bg">
+          <div class="container">
+              <div class="row align-items-start">
+                  <div class="col-lg-8 m-15px-tb">
+                      <article class="article">
+                          <div class="article-img">
+                              <img src="{{ object.image.url }}" title="" alt="">
+                          </div>
+                          <div class="article-title">
+                              
+                              <h2>{{object.title}}</h2>
+                              <div class="media second-header">
+                                  <div class="avatar">
+                                      <img src="{{ object.author.profile_pic.url }}"  title="" alt="">
+                                  </div>
+                                  <div class="media-body second-header-part">
+                                      <label>{{user.username}}</label>
+                                      <span>{{object.date}}</span>
+                                      <label>Total views {{object.view_count}} times</label>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="article-content">
+                              <p>{{object.details}}</p>
+                          </div>
+                          
+                          <!-- {% if user.is_authenticated %}
+                            {% if user.id == post.author.id %}
+                             {% endif %}
+                            {% endif %} -->
+                        
+                            {% if user.is_authenticated %}
+                              <div class="nav tag-cloud">
+                                  <a href="{% url 'blogapp:post-update' object.id %}">Update post</a>
+                                  <a href="{% url 'blogapp:post-delete' object.id %}">Delete Post</a>
+    
+                              </div>
+                            {% endif %} 
+                      </article>
+
+
+  <div class="contact-form article-comment">
+                          {% comment %} <h4>Leave a Reply</h4> {% endcomment %}
+                          <form id="contact-form" method="POST">
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      {% comment %} <div class="form-group">
+                                          <input name="Name" id="name" placeholder="Name *" class="form-control" type="text">
+                                      </div> {% endcomment %}
+                                  </div>
+                                  <div class="col-md-6">
+                                      {% comment %} <div class="form-group">
+                                          <input name="Email" id="email" placeholder="Email *" class="form-control" type="email">
+                                      </div> {% endcomment %}
+                                  </div>
+                                  <div class="col-md-12">
+                                      {% comment %} <div class="form-group">
+                                          <textarea name="message" id="message" placeholder="Your message *" rows="4" class="form-control"></textarea>
+                                      </div> {% endcomment %}
+                                  </div>
+                                  <div class="col-md-12">
+                                      {% comment %} <div class="send">
+                                          <button class="px-btn theme"><span>Submit</span> <i class="arrow"></i></button>
+                                      </div> {% endcomment %}
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+
+
+
+                  <div class="col-lg-4 m-15px-tb blog-aside">
+    
+                    <!-- Latest Post -->
+                    <div class="widget widget-latest-post">
+                        <div class="widget-title">
+                            <h3>Latest Post</h3>
+                        </div>
+                          
+                        <div class="widget-body">
+                            {% for post in latest %}
+                            <div class="latest-post-aside media">
+                                <div class="lpa-left media-body">
+                                    <div class="lpa-title">
+                                        <h5><a href="{{ post.get_absolute_url }}">{{post.title}}</a></h5>
+                                    </div>
+                                    <div class="lpa-meta">
+                                        <a class="name" href="{{ post.get_absolute_url }}">
+                                            {{ post.author }}
+                                        </a>
+                                        <a class="date" href="#">
+                                            {{ post.date }}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="lpa-right">
+                                    <a href="#">
+                                        <img src="{{post.image.url }}" title="" alt="">
+                                    </a>
+                                </div> 
+                            </div>
+                            {% endfor %}
+                           
+                        </div>
+                    </div>
+                    <!-- End Latest Post -->
+                   
+                </div>
+                <!-- </div>
+                </div>
+                </div> -->
+
+
+<!--Footer seaction------------------------------------------------------------------------------------->
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>A blog with django </strong> by <a href="https://altafhosen.com">Hosen MD Altaf</a>.
+      </p>
+    </div>
+  </footer>  
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'blogapp/main.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<h1  style="text-align: center; background-color: rgb(233, 236, 239);"> Knock Me for any query </h1>
+<form method="post">{% csrf_token %}
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+          {{ form|crispy }}
+        </div>
+        
+      </div>
+    <input class="btn btn-success col-md-6 offset-md-3" type="submit" value="Send message">
+</form>
+
+{% endblock %}
