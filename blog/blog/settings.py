@@ -121,6 +121,13 @@ USE_L10N = True
 USE_TZ = True
 
 
+<<<<<<< HEAD
+=======
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+>>>>>>> da58181c0203d1cfd371cc637654e87f7887ebc7
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
@@ -132,6 +139,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # else:
 #    STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
+# # Static files (CSS, JavaScript, Images)
+# # https://docs.djangoproject.com/en/1.9/howto/static-files/
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/static/'
+
+# # Extra places for collectstatic to find static files.
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
+
 MEDIA_URL = '/media/'
+<<<<<<< HEAD
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+=======
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+>>>>>>> da58181c0203d1cfd371cc637654e87f7887ebc7
