@@ -1,6 +1,7 @@
 
 
 import os
+# import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -15,7 +16,7 @@ SECRET_KEY = 'ha1q#_2xf8_qpl6ucka*yy)0jmjf(*te(hy8vl2pd()!z$m^=k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['altafsblog.herokuapp.com','0.0.0.0', 'localhost', '127.0.0.1',]
 
 
 # Application definition
@@ -121,13 +122,10 @@ USE_L10N = True
 USE_TZ = True
 
 
-<<<<<<< HEAD
-=======
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
->>>>>>> da58181c0203d1cfd371cc637654e87f7887ebc7
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
@@ -150,9 +148,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # )
 
 MEDIA_URL = '/media/'
-<<<<<<< HEAD
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-=======
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')
->>>>>>> da58181c0203d1cfd371cc637654e87f7887ebc7
+# django_heroku.settings(locals())
+
