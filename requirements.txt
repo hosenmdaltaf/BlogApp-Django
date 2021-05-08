@@ -1,11 +1,15 @@
-asgiref==3.3.1
+
+asgiref==3.3.4
+dj-database-url==0.5.0
 Django==3.0
-django-crispy-forms==1.9.1
+django-crispy-forms==1.11.2
+hyperlink==21.0.0
+idna==2.10
+incremental==21.3.0
+memcache==0.5.1
+Pillow==8.2.0
+psycopg2==2.8.6
+urllib3==1.26.4
 whitenoise==5.2.0
-gunicorn==20.0.4
-whitenoise==5.2.0
-Pillow==7.1.2
-pytz==2021.1
-sqlparse==0.4.1
-urllib3==1.25.9
+gunicorn==20.1.0
 

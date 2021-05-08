@@ -16,7 +16,7 @@ SECRET_KEY = 'ha1q#_2xf8_qpl6ucka*yy)0jmjf(*te(hy8vl2pd()!z$m^=k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['altafsblog.herokuapp.com','0.0.0.0', 'localhost', '127.0.0.1',]
+ALLOWED_HOSTS = ['simple-blog-with-django.herokuapp.com','127.0.0.1',]
 
 
 # Application definition
@@ -83,10 +83,22 @@ CACHES = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd4p9mvb7n43m61',
+        'USER':'bporsyogkvwjlv',
+        'PASSWORD':'0c08af5e137f2e72bbba48d2ab4de3942c5a79109f75a83476591e474bb58ca8',
+        'HOST':'ec2-3-232-163-23.compute-1.amazonaws.com',
+        'PORT':'5432'
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 
 
 # Password validation
@@ -141,3 +153,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # django_heroku.settings(locals())
 
+if os.getcwd() == '/app':
+    import dj_database_url
+    db_from_env = dj_database_url.config(conn_max_age=600)
+    DATABASES['default'].update(db_from_env)
+    #Honor the 'X-forwarded-Proto' header for request.is_secure().
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    #Allow all host headers
+    ALLOWED_HOSTS = ['simple-blog-with-django.herokuapp.com']
+    DEBUG = True
+
+    #Static asset configuration
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+   
